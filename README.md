@@ -18,7 +18,7 @@ Script Setup
 
 To get it working install plugin NERDTOOLS and enable SSHPASS. This enables us to SSH into NETGATE within a script without user interaction.
 
-Edit in this script: https://raw.githubusercontent.com/Dwindle2234/Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts/main/Unraid%20Script.txt
+Edit in this [script](https://raw.githubusercontent.com/Dwindle2234/Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts/main/Unraid%20Script.txt)
 
 On NETGATE we use add-on **FILER** to create a file in a users (SSH\_USER) home folder.  This user only has access for SSHing (effectively ADMIN rights - no advised to expose this publically)
 
