@@ -1,5 +1,5 @@
 #!/bin/bash
-#ZFS Datashare Unlock Script - S Child 17-Aug-24
+#ZFS Datashare Unlock Script - Dwindle2234 17-Aug-24
 #Script assumes that all datasets were created with the same password file located in /root
 
 # Parameters
