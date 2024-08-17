@@ -3,10 +3,10 @@
 #Script assumes that all datasets were created with the same password file located in /root
 
 # Parameters
-FILENAME="unraidpass.txt"  #name of file on NETGATE
-SSHPASSWORD="XXXXX" #change to your password
-SOURCEDEVICE="ssh_user@192.168.50.1" #Source device
-SOURCEPATH=/home/ssh_user
+FILENAME="unraidpass.txt"                   # name of file on NETGATE
+SSHPASSWORD="XXXXX"                         # change this to your pfSense's user password
+SOURCEDEVICE="ssh_user@192.168.50.1"        # Netgate/pfSenseSource device IP and user name
+SOURCEPATH="/home/ssh_user"                 # Location of password file on NETGATE
 #
 
 NOTIFY="/usr/local/emhttp/webGui/scripts/notify"
@@ -20,8 +20,7 @@ function unlock () {
     #Mount the dataset
     zfs mount $1
     
-    #report
-    
+    #report  
     if [ $? -eq 0 ]; then
         $NOTIFY -i "normal" -s "ZFS Dataset Unlock Script" \
         -d "The dataset $1 WAS unlocked successfully."
