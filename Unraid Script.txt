@@ -1,0 +1,49 @@
+#!/bin/bash
+#ZFS Datashare Unlock Script - S Child 17-Aug-24
+#Script assumes that all datasets were created with the same password file located in /root
+
+# Parameters
+FILENAME="unraidpass.txt"  #name of file on NETGATE
+SSHPASSWORD="XXXXX" #change to your password
+SOURCEDEVICE="ssh_user@192.168.50.1" #Source device
+SOURCEPATH=/home/ssh_user
+#
+
+function unlock () {
+    echo Attempting to unlock dataset $1
+
+    #Load the password file
+    zfs load-key $1
+
+    #Mount the dataset
+    zfs mount $1
+    
+    #report
+    
+    if [ $? -eq 0 ]; then
+        /usr/local/emhttp/webGui/scripts/notify -i "normal" -s "ZFS Dataset Unlock Script" \
+        -d "The dataset $1 WAS unlocked successfully."
+    else
+        /usr/local/emhttp/webGui/scripts/notify -i "warning" -s "ZFS Dataset Unlock Script" \
+        -d "The dataset $1 was NOT unlocked successfully. Action will be needed."
+    fi
+}
+
+#Main Program Starts
+
+echo Script started
+
+#Download the password file to /root (assumes same file for each share)
+sshpass -p$SSHPASSWORD scp -o StrictHostKeyChecking=no $SOURCEDEVICE:$SOURCEPATH/$FILENAME /root
+
+if [ ! -e "/root/$FILENAME" ]; then
+    /usr/local/emhttp/webGui/scripts/notify -i "alert" -s "ZFS Dataset Unlock Script" \
+    -d "The password file was not retrieved from Netgate.  Encrypted datasets CANNOT be unlocked." 
+    exit
+fi
+
+#Specify shares to unlock
+unlock "disk1/general"
+
+echo
+echo Unlock encrypted shares script finished.
