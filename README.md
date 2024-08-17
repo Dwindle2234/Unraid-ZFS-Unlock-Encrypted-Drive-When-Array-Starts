@@ -5,7 +5,7 @@ Instructions and simple script that will unlock your encrypted ZFS shares by pul
 Principle
 ---------
 
-Principle is that the password file (the key to unlocking datasets) sits (in my case) on pfSense/Netgate device.  Any SSH device will do
+Principle is that the password file (the key to unlocking datasets) sits (in my case) on a local pfSense/Netgate device.  Any local SSH device would be suitable
 
 When unRaid starts up the password file is pulled onto the transiant /root folder by a script
 
@@ -20,9 +20,9 @@ To get it working install plugin NERDTOOLS and enable SSHPASS. This enables us t
 
 On NETGATE we use add-on **FILER** to create a file in a users (SSH\_USER) home folder.  This user only has access for SSHing (effectively ADMIN rights - no advised to expose this publically)
 
-The script runs on unraid thanks to plugin USER\_SCRIPTS
+The script runs on unraid thanks to plugin USER\_SCRIPTS. Set the script to run when 'array starts up'
 
-Creating Encrypted DataSets
+Creating New Encrypted DataSets
 ---------------------------
 
 ```text-x-sh
