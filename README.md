@@ -1,11 +1,10 @@
-# Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts
-Instructions and simple script that will unlock your encrypted ZFS shares by pulling a keyfile via SSH from another device. No human interaction needed
+# ZFS Unlocking Encrypted Shares with Human Input - and Ensuring it only works on your own network
+Instructions and simple script that will unlock your encrypted ZFS shares by pulling a keyfile via SSH from another device. No human interaction needed.  Drive contents should be unreadable by whover nicked the server
 
-# ZFS Automatically Unlocking Encrypted Shares
 Principle
 ---------
 
-Principle is that the password file (the key to unlocking datasets) sits (in my case) on a local pfSense/Netgate device.  Any local SSH device would be suitable
+Principle is that the password file (the key to unlocking datasets) sits (in my case) on a local pfSense/Netgate device.  Any local SSH device would be suitable. My netgate is well hidden!
 
 When unRaid starts up the password file is pulled onto the transiant /root folder by a script
 
@@ -20,9 +19,12 @@ To enable the script to run on UnRaid install plugin ```NERDTOOLS``` and enable 
 
 Edit in this [script](UnraidScript.txt) using the User\_Scripts plugin. Set the script to run when 'array starts up'
 
-On NETGATE device use add-on **FILER** to create a file in a user's (SSH\_USER) home folder.  The file should be plain text and contains a password - call the file ```unraidpass.txt```. This user should have access for SSHing only (effectively ADMIN rights - but not advised to expose port 22 publically!).
+On NETGATE device use add-on **FILER** to create a file in a user's (SSH\_USER) home folder.  The file should be plain text and contain a password - name the file ```unraidpass.txt```.
+
+Create a new pfSense user and grant access for SSHing only (effectively gives ADMIN rights - sop not advised to expose port 22 publically!).
 
 Also enable SSH on the pfSense - Sytem/Advanced/Secure Shell. Leave the other options as default
+
 
 Creating New Encrypted DataSets
 ---------------------------
@@ -41,10 +43,11 @@ zfs get keylocation disk1/SHARE-NAME
 
 You can 'lock' then 'unnlock' using the GUI (ZFS MASTER plugin) without needed the password (provided you haven't deleted it from /root)
 
+
 Copying Files Over from existing unencrypted share
 ------------------
 
-Suggest existing share is renamed, new dataset created then rsyc the files over
+Suggest existing share is renamed and the new dataset created then rsyc the files over
 
 ```text-x-sh
 rsync -av --stats --progress /mnt/user/general/ /mnt/user/general
@@ -59,7 +62,7 @@ Changing an Existing Encrypted Share to Use the Password File
 zfs change-key -o keylocation=file:///root/unraidpass.txt -o keyformat=passphrase disk1/SHARE-NAME
 ```
 
-This doesn't change the 'master' ZFS password so the drive won't be recrypted with this command
+This doesn't change the 'master' ZFS password so the drive won't be recrypted with this command.  The change is instant.
 
 
 Reference
