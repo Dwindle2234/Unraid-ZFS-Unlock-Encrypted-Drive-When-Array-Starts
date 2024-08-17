@@ -20,7 +20,7 @@ To enable the script to run on UnRaid install plugin ```NERDTOOLS``` and enable 
 
 Edit in this [script](https://raw.githubusercontent.com/Dwindle2234/Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts/main/Unraid%20Script.txt) using the User\_Scripts plugin. Set the script to run when 'array starts up'
 
-[test](Unraid Script.txt)
+[test](UnraidScript.txt)
 
 On NETGATE device use add-on **FILER** to create a file in a user's (SSH\_USER) home folder.  The file should be plain text and contains a password - call the file ```unraidpass.txt```. This user should have access for SSHing only (effectively ADMIN rights - but not advised to expose port 22 publically!).
 
