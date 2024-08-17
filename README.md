@@ -8,22 +8,22 @@ Principle is that the password file (the key to unlocking datasets) sits (in my 
 
 When unRaid starts up the password file is pulled onto the transiant /root folder by a script
 
-If the file exists then the drive is mounted
+If the file exists then the drive(s) are mounted
 
-If unRaid server is stolen then there is should be no access to Netgate and hence drives remain encrypted
+If unRaid server is stolen then there should be no access to Netgate and hence drives remain encrypted
 
-Script Setup
+Setup
 -----
 
 To enable the script to run on UnRaid install plugin ```NERDTOOLS``` and enable ```SSHPASS```. This enables us to SSH into NETGATE within a script without user interaction.
 
 Edit in this [script](UnraidScript.txt) using the User\_Scripts plugin. Set the script to run when 'array starts up'
 
-On NETGATE device use add-on **FILER** to create a file in a user's (SSH\_USER) home folder.  The file should be plain text and contain a password - name the file ```unraidpass.txt```.
+On NETGATE device use add-on ```FILER``` to create a file in a user's (SSH\_USER) home folder.  The file should be plain text and contain a password - name the file ```unraidpass.txt```.
 
 Create a new pfSense user and grant access for SSHing only (effectively gives ADMIN rights - sop not advised to expose port 22 publically!).
 
-Also enable SSH on the pfSense - Sytem/Advanced/Secure Shell. Leave the other options as default
+Also enable SSH on the pfSense - Sytem/Advanced/Secure Shell. Leave the other options as default.
 
 
 Creating New Encrypted DataSets
@@ -71,6 +71,6 @@ Reference
 This is very useful: [https://arstechnica.com/gadgets/2021/06/a-quick-start-guide-to-openzfs-native-encryption/](https://arstechnica.com/gadgets/2021/06/a-quick-start-guide-to-openzfs-native-encryption/)
 
 
-Credit
+Credits
 ------
 Thanks to SpaceInvaderOne for inspiring the idea (he used a FTP site to unlock the entire array): https://youtu.be/TSlHEBR1yfY?si=ixdkU-hyi6_eYLZk
