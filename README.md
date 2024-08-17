@@ -47,12 +47,12 @@ You can 'lock' then 'unnlock' using the GUI (ZFS MASTER plugin) without needed t
 Copying Files Over from existing unencrypted share
 ------------------
 
-Suggest existing share is renamed and the new dataset created then rsyc the files over
+Suggest existing share is renamed (use unRaid GUI - SHARES tab) and a new dataset created in its place - then rsyc the files over
 
 ```text-x-sh
-rsync -av --stats --progress /mnt/user/general/ /mnt/user/general
+rsync -av --stats --progress /mnt/user/general-17-aug/ /mnt/user/general
 ```
-NOTE the extra slash on the source!
+NOTE the extra slash at the end of the source path!
 
 
 Changing an Existing Encrypted Share to Use the Password File
