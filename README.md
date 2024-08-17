@@ -1,4 +1,4 @@
-# ZFS Unlocking Encrypted Shares with Human Input - and Ensuring it only works on your own network
+# ZFS Unlocking Encrypted Shares without Human Input - and ensuring it only works on your own network
 Instructions and simple script that will unlock your encrypted ZFS shares by pulling a keyfile via SSH from another device. No human interaction needed.  Drive contents should be unreadable by whover nicked the server
 
 Principle
