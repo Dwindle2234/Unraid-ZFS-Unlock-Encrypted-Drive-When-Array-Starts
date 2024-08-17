@@ -1,5 +1,5 @@
 # Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts
-Instructions and simple script that will unlock your encrypted ZFS shares by pulling a keyfile via SSH from another device
+Instructions and simple script that will unlock your encrypted ZFS shares by pulling a keyfile via SSH from another device. No human interaction needed
 
 # ZFS Automatically Unlocking Encrypted Shares
 Principle
@@ -37,6 +37,8 @@ This command lists the result
 zfs get keylocation disk1/SHARE-NAME
 ```
 
+You can 'lock' then 'unnlock' using the GUI (ZFS MASTER plugin) without needed the password (provided you haven't deleted it from /root)
+
 Copying Files Over from existing unencrypted share
 ------------------
 
@@ -55,7 +57,15 @@ Changing an Existing Encrypted Share to Use the Password File
 zfs change-key -o keylocation=file:///root/unraidpass.txt -o keyformat=passphrase disk1/SHARE-NAME
 ```
 
+This doesn't change the 'master' ZFS password so the drive won't be recrypted with this command
+
+
 Reference
 ---------
 
 This is very useful: [https://arstechnica.com/gadgets/2021/06/a-quick-start-guide-to-openzfs-native-encryption/](https://arstechnica.com/gadgets/2021/06/a-quick-start-guide-to-openzfs-native-encryption/)
+
+
+Credit
+------
+Thanks to SpaceInvaderOne for inspiring the idea (he used a FTP site to unlock the entire array): https://youtu.be/TSlHEBR1yfY?si=ixdkU-hyi6_eYLZk
