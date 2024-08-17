@@ -78,4 +78,4 @@ This is very useful: [https://arstechnica.com/gadgets/2021/06/a-quick-start-guid
 
 Credits
 ------
-Thanks to SpaceInvaderOne for inspiring the idea (he used a FTP site to unlock the entire array): https://youtu.be/TSlHEBR1yfY?si=ixdkU-hyi6_eYLZk
+Thanks to [SpaceInvaderOne](https://youtu.be/TSlHEBR1yfY?si=ixdkU-hyi6_eYLZk) for inspiring the idea (he used a FTP site to unlock the entire array)
