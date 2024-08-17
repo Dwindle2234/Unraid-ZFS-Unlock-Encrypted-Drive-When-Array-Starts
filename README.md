@@ -64,6 +64,11 @@ zfs change-key -o keylocation=file:///root/unraidpass.txt -o keyformat=passphras
 
 This doesn't change the 'master' ZFS password so the drive won't be recrypted with this command.  The change is instant.
 
+Procedure should server be nicked
+---
+
+Nothing to do really....you should maybe change the SSH_USER's password on pfSense.  But unless they can plug back into your network then there's no risk. 
+
 
 Reference
 ---------
