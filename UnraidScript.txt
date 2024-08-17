@@ -9,6 +9,8 @@ SOURCEDEVICE="ssh_user@192.168.50.1" #Source device
 SOURCEPATH=/home/ssh_user
 #
 
+NOTIFY="/usr/local/emhttp/webGui/scripts/notify"
+
 function unlock () {
     echo Attempting to unlock dataset $1
 
@@ -21,10 +23,10 @@ function unlock () {
     #report
     
     if [ $? -eq 0 ]; then
-        /usr/local/emhttp/webGui/scripts/notify -i "normal" -s "ZFS Dataset Unlock Script" \
+        $NOTIFY -i "normal" -s "ZFS Dataset Unlock Script" \
         -d "The dataset $1 WAS unlocked successfully."
     else
-        /usr/local/emhttp/webGui/scripts/notify -i "warning" -s "ZFS Dataset Unlock Script" \
+        $NOTIFY -i "warning" -s "ZFS Dataset Unlock Script" \
         -d "The dataset $1 was NOT unlocked successfully. Action will be needed."
     fi
 }
@@ -37,7 +39,7 @@ echo Script started
 sshpass -p$SSHPASSWORD scp -o StrictHostKeyChecking=no $SOURCEDEVICE:$SOURCEPATH/$FILENAME /root
 
 if [ ! -e "/root/$FILENAME" ]; then
-    /usr/local/emhttp/webGui/scripts/notify -i "alert" -s "ZFS Dataset Unlock Script" \
+    $NOTIFY -i "alert" -s "ZFS Dataset Unlock Script" \
     -d "The password file was not retrieved from Netgate.  Encrypted datasets CANNOT be unlocked." 
     exit
 fi
