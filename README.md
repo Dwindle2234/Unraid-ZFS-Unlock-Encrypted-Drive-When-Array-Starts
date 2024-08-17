@@ -16,13 +16,15 @@ If unRaid server is stolen then there is should be no access to Netgate and henc
 Script Setup
 -----
 
-To get it working install plugin NERDTOOLS and enable SSHPASS. This enables us to SSH into NETGATE within a script without user interaction.
+To enable the script to run on UnRaid install plugin ```NERDTOOLS``` and enable ```SSHPASS```. This enables us to SSH into NETGATE within a script without user interaction.
 
-Edit in this [script](https://raw.githubusercontent.com/Dwindle2234/Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts/main/Unraid%20Script.txt)
+Edit in this [script](https://raw.githubusercontent.com/Dwindle2234/Unraid-ZFS-Unlock-Encrypted-Drive-When-Array-Starts/main/Unraid%20Script.txt) using the User\_Scripts plugin. Set the script to run when 'array starts up'
 
-On NETGATE we use add-on **FILER** to create a file in a users (SSH\_USER) home folder.  The file should be plain text and contains a password - call the file ```unraidpass.txt```. This user only has access for SSHing (effectively ADMIN rights - no advised to expose this publically)
+[test](unraid script.txt)
 
-The script runs on unraid thanks to plugin USER\_SCRIPTS. Set the script to run when 'array starts up'
+On NETGATE device use add-on **FILER** to create a file in a user's (SSH\_USER) home folder.  The file should be plain text and contains a password - call the file ```unraidpass.txt```. This user should have access for SSHing only (effectively ADMIN rights - but not advised to expose port 22 publically!).
+
+Also enable SSH on the pfSense - Sytem/Advanced/Secure Shell. Leave the other options as default
 
 Creating New Encrypted DataSets
 ---------------------------
